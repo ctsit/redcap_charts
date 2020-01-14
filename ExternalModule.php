@@ -364,14 +364,18 @@ class ExternalModule extends AbstractExternalModule {
      * Include a CSS file.
      */
     protected function includeCss($path) {
-        echo '<link rel="stylesheet" href="' . $path . '">';
+        // Use noauth method, but not the API endpoint, to load resources while not in network
+        $ext_path = $this->getUrl($path, true, false);
+        echo '<link rel="stylesheet" href="' . $ext_path . '">';
     }
 
     /**
      * Include a JS file.
      */
     protected function includeJs($path) {
-        echo '<script src="' . $path . '"></script>';
+        // Use noauth method, but not the API endpoint, to load resources while not in network
+        $ext_path = $this->getUrl($path, true, false);
+        echo '<script src="' . $ext_path . '"></script>';
     }
 
     /**
