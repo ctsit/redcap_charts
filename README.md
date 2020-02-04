@@ -13,6 +13,12 @@ Two amazing third-party chart libraries are supported by this module - Chart.js 
 
 ![Configuration screen](img/config_screen.png)
 
+## Example projects
+
+This repo includes two [example projects](examples/) that implement Chart.js charts.  `ChartFieldTestLongitudinal.xml` implements 2 charts in a longitudinal project showing a chart of multiple fields from one event and a chart of one across multiple events. 
+`ChartFieldTestSurvey.xml` shows how data collected in one survey form can be used to display a chart of that data in the next form. When building a project with either of these XML files, make sure enable the redcap_chart_field module and configure it for `Chartjs`.
+
+
 ## Setting up a chart field (Chart.js example)
 This section will walk you through a few steps to setup a [Charts.js](http://www.chartjs.org/) chart, dynamically populated via [Piping](https://redcap.vanderbilt.edu/redcap_v5.5.0/DataEntry/piping_explanation.php).
 

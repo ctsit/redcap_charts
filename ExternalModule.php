@@ -336,7 +336,7 @@ class ExternalModule extends AbstractExternalModule {
      */
     protected function loadStyles() {
         foreach ($this->cssFiles as $path) {
-            $this->includeCss($this->getUrl($path));
+            $this->includeCss($path);
         }
 
         $this->cssFiles = array();
@@ -347,7 +347,7 @@ class ExternalModule extends AbstractExternalModule {
      */
     protected function loadScripts() {
         foreach ($this->jsFiles as $path) {
-            $this->includeJs($this->getUrl($path));
+            $this->includeJs($path);
         }
 
         $this->jsFiles = array();
@@ -364,14 +364,23 @@ class ExternalModule extends AbstractExternalModule {
      * Include a CSS file.
      */
     protected function includeCss($path) {
-        echo '<link rel="stylesheet" href="' . $path . '">';
+        // Use noauth method, but not the API endpoint, to load resources while not in network
+        $ext_path = $this->getUrl($path, true, false);
+        echo '<link rel="stylesheet" href="' . $ext_path . '">';
     }
 
     /**
      * Include a JS file.
      */
     protected function includeJs($path) {
-        echo '<script src="' . $path . '"></script>';
+        // Use noauth method, but not the API endpoint, to load resources while not in network
+        if (strpos($path, "cdnjs") != 0) {
+            $ext_path = $path;
+        } else {
+            $ext_path = $this->getUrl($path, true, false);
+        }
+
+        echo '<script src="' . $ext_path . '"></script>';
     }
 
     /**
